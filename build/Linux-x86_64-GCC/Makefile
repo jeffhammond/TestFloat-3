@@ -38,6 +38,8 @@ SOFTFLOAT_DIR = ../../../SoftFloat-3
 SOFTFLOAT_INCLUDE_DIR = $(SOFTFLOAT_DIR)/source/include
 PLATFORM = Linux-x86_64-GCC
 
+GCC = gcc-4.9
+
 SOFTFLOAT_H = \
   $(SOFTFLOAT_INCLUDE_DIR)/softfloat_types.h \
   $(SOFTFLOAT_INCLUDE_DIR)/softfloat.h
@@ -49,13 +51,13 @@ DELETE = rm -f
 C_INCLUDES = \
   -I. -I$(SUBJ_SOURCE_DIR) -I$(SOURCE_DIR) -I$(SOFTFLOAT_INCLUDE_DIR)
 COMPILE_C = \
-  gcc -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+  $(GCC) -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
     $(C_INCLUDES) -O2 -o $@
 COMPILE_SLOWFLOAT_C = \
-  gcc -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
+  $(GCC) -c -Werror-implicit-function-declaration $(TESTFLOAT_OPTS) \
     $(C_INCLUDES) -O3 -o $@
 MAKELIB = ar crs $@
-LINK = gcc -lm -o $@
+LINK = $(GCC) -lm -o $@
 
 OBJ = .o
 LIB = .a
